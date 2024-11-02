@@ -1,16 +1,40 @@
 
 
-let URL = 'https://randomuser.me/api/?results=7';
-let info = document.querySelector('#info');
+let info = document.querySelector('#info')
+let btn = document.querySelector('button')
+let URL = 'https://cat-fact.herokuapp.com/facts';
 
-let getInfo = async ()=>{
-    let responds = await fetch(URL);
-    console.log(responds)
-
-    let data = await responds.json()
-    info.innerText = data[0]
+function getFacts(){
+    return fetch(URL).then((response)=>{
+        return response.json()
+    })
+    .then((data)=>{
+        console.log(data)
+        info.innerText = data[3].text
+    })
 }
-getInfo()
+btn.addEventListener('click', getFacts)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
